@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,18 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+                // Custom farming theme colors
+                soil: '#5E4B36',
+                leaf: '#4CAF50',
+                leafDark: '#2E7D32',
+                wheat: '#F9C74F',
+                sky: '#64B5F6',
+                wood: '#8D6E63',
+                stone: '#9E9E9E',
+                water: '#29B6F6',
+                lightSoil: '#E8D8C9',
+                ivory: '#FFFFF0',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -70,26 +82,27 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
-				}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
+				},
+                'pulse': {
+                    '0%, 100%': { opacity: '1' },
+                    '50%': { opacity: '0.5' },
+                },
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
+				'accordion-up': 'accordion-up 0.2s ease-out',
+                'pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+			},
+            backgroundImage: {
+                'grain': "url('/grain.png')",
+                'field': "url('/field.jpg')",
+            }
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
