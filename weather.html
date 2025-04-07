@@ -1,0 +1,422 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather - Kisan Direct Market</title>
+  <meta name="description" content="Weather forecasts for farmers - Kisan Direct Market" />
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/theme.css">
+  <link rel="stylesheet" href="styles/authBackground.css">
+  
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Weather page specific styles -->
+  <style>
+    .forecast-card .icon-container {
+      font-size: 30px;
+      margin-bottom: 10px;
+      color: #F9C74F;
+    }
+    
+    .crop-advice-card {
+      border-left: 4px solid var(--color-leaf);
+      background-color: rgba(76, 175, 80, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .crop-advice-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .weather-search-container {
+      display: flex;
+      align-items: center;
+      background: white;
+      border-radius: 8px;
+      padding: 5px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+    
+    .weather-search-container input {
+      flex: 1;
+      border: none;
+      padding: 10px 15px;
+      font-size: 14px;
+    }
+    
+    .weather-search-container input:focus {
+      outline: none;
+    }
+    
+    .weather-search-container i {
+      padding: 10px 15px;
+      color: var(--color-soil);
+    }
+    
+    .current-location {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+      font-weight: 500;
+    }
+    
+    .current-location i {
+      color: var(--color-leaf);
+    }
+    
+    .weather-date {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+    
+    .weather-date i {
+      color: var(--color-leaf);
+    }
+    
+    .weather-card-large {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .weather-card-large::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://images.unsplash.com/photo-1534088568595-a066f410bcda?q=80&w=1902&auto=format&fit=crop') center center no-repeat;
+      background-size: cover;
+      opacity: 0.15;
+      z-index: 0;
+    }
+    
+    .weather-card-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .weather-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    @media (min-width: 768px) {
+      .weather-stats {
+        flex-direction: row;
+      }
+    }
+    
+    .weather-stat-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 15px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      backdrop-filter: blur(5px);
+    }
+    
+    .weather-stat-item i {
+      color: var(--color-sky);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <header class="dashboard-header">
+      <div class="container">
+        <div class="header-content">
+          <div class="left-section">
+            <button id="sidebar-toggle" class="menu-toggle">
+              <i class="fa fa-bars"></i>
+            </button>
+            <div class="logo-text">
+              <h1>KISAN DIRECT MARKET</h1>
+              <p>Empowering Farmers with Direct Market Access</p>
+            </div>
+          </div>
+          <div class="right-section">
+            <div class="user-info">
+              <i class="fa fa-user-circle"></i>
+              <span>Welcome, <span id="username-display">Rajesh Kumar</span>!</span>
+            </div>
+            <button id="logout-btn" class="btn-logout">
+              <i class="fa fa-sign-out-alt"></i>
+              <span>Logout</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <aside id="sidebar" class="sidebar">
+        <nav class="sidebar-nav">
+          <ul>
+            <li>
+              <a href="index.html#home-section" data-section="home-section">
+                <i class="fa fa-home"></i>
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a href="index.html#markets-section" data-section="markets-section">
+                <i class="fa fa-store"></i>
+                <span>Markets</span>
+              </a>
+            </li>
+            <li>
+              <a href="index.html#dealers-section" data-section="dealers-section">
+                <i class="fa fa-handshake"></i>
+                <span>Dealers</span>
+              </a>
+            </li>
+            <li>
+              <a href="index.html#crops-section" data-section="crops-section">
+                <i class="fa fa-seedling"></i>
+                <span>Crops</span>
+              </a>
+            </li>
+            <li class="active">
+              <a href="weather.html" data-section="weather-section">
+                <i class="fa fa-cloud-sun"></i>
+                <span>Weather</span>
+              </a>
+            </li>
+            <li>
+              <a href="index.html#policies-section" data-section="policies-section">
+                <i class="fa fa-file-alt"></i>
+                <span>Policies</span>
+              </a>
+            </li>
+            <li>
+              <a href="index.html#suggestions-section" data-section="suggestions-section">
+                <i class="fa fa-lightbulb"></i>
+                <span>Suggestions</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+      
+      <!-- Main Content -->
+      <main class="main-content">
+        <section class="dashboard-section animate-fadeInUp">
+          <h2><i class="fa fa-cloud-sun"></i> Weather Forecast</h2>
+          <p class="text-muted-foreground">Plan your agricultural activities with accurate weather data</p>
+
+          <div class="weather-search-container">
+            <i class="fa fa-map-marker-alt"></i>
+            <input type="text" placeholder="Search location..." value="Nashik, Maharashtra">
+            <button class="btn-farm">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+          
+          <!-- Current Weather -->
+          <div class="card weather-card-large">
+            <div class="weather-card-content">
+              <div class="card-header">
+                <div class="current-location">
+                  <i class="fa fa-map-marker-alt"></i>
+                  <span>Nashik, Maharashtra</span>
+                </div>
+                <div class="weather-date">
+                  <i class="fa fa-calendar"></i>
+                  <span id="current-date">Monday, April 7, 2025</span>
+                </div>
+              </div>
+              
+              <div class="card-body">
+                <div class="weather-summary">
+                  <div class="weather-icon">
+                    <i class="fa fa-cloud-sun"></i>
+                  </div>
+                  <div class="weather-info">
+                    <div class="temperature">28°C</div>
+                    <h4>Partly Cloudy</h4>
+                    <p>Perfect day for harvesting!</p>
+                    
+                    <div class="weather-stats">
+                      <div class="weather-stat-item">
+                        <i class="fa fa-tint"></i>
+                        <span>Humidity: 65%</span>
+                      </div>
+                      <div class="weather-stat-item">
+                        <i class="fa fa-wind"></i>
+                        <span>Wind: 12 km/h</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 5-Day Forecast -->
+          <h3 class="section-title mt-4">5-Day Forecast</h3>
+          <div class="forecast-cards">
+            <div class="forecast-card">
+              <div class="forecast-day">Today</div>
+              <div class="icon-container">
+                <i class="fa fa-sun"></i>
+              </div>
+              <div class="forecast-temp">28°C</div>
+              <div class="forecast-details">
+                <small>Humidity: 65%</small>
+                <small>Wind: 12 km/h</small>
+              </div>
+            </div>
+            
+            <div class="forecast-card">
+              <div class="forecast-day">Tomorrow</div>
+              <div class="icon-container">
+                <i class="fa fa-cloud-sun"></i>
+              </div>
+              <div class="forecast-temp">27°C</div>
+              <div class="forecast-details">
+                <small>Humidity: 70%</small>
+                <small>Wind: 10 km/h</small>
+              </div>
+            </div>
+            
+            <div class="forecast-card">
+              <div class="forecast-day">Wednesday</div>
+              <div class="icon-container">
+                <i class="fa fa-sun"></i>
+              </div>
+              <div class="forecast-temp">29°C</div>
+              <div class="forecast-details">
+                <small>Humidity: 60%</small>
+                <small>Wind: 8 km/h</small>
+              </div>
+            </div>
+            
+            <div class="forecast-card">
+              <div class="forecast-day">Thursday</div>
+              <div class="icon-container">
+                <i class="fa fa-cloud"></i>
+              </div>
+              <div class="forecast-temp">26°C</div>
+              <div class="forecast-details">
+                <small>Humidity: 75%</small>
+                <small>Wind: 15 km/h</small>
+              </div>
+            </div>
+            
+            <div class="forecast-card">
+              <div class="forecast-day">Friday</div>
+              <div class="icon-container">
+                <i class="fa fa-cloud-rain"></i>
+              </div>
+              <div class="forecast-temp">25°C</div>
+              <div class="forecast-details">
+                <small>Humidity: 80%</small>
+                <small>Wind: 20 km/h</small>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Crop-specific Weather Advice -->
+          <h3 class="section-title mt-4">Crop Weather Advisory</h3>
+          <div class="crop-advice-container">
+            <div class="crop-advice-grid">
+              <div class="crop-advice-card card">
+                <div class="card-body">
+                  <h4><i class="fa fa-leaf"></i> Wheat</h4>
+                  <p>Current conditions are favorable for wheat cultivation.</p>
+                </div>
+              </div>
+              
+              <div class="crop-advice-card card">
+                <div class="card-body">
+                  <h4><i class="fa fa-leaf"></i> Rice</h4>
+                  <p>Monitor water levels as light rain is expected later this week.</p>
+                </div>
+              </div>
+              
+              <div class="crop-advice-card card">
+                <div class="card-body">
+                  <h4><i class="fa fa-leaf"></i> Tomatoes</h4>
+                  <p>Consider providing shade as temperatures are expected to rise.</p>
+                </div>
+              </div>
+              
+              <div class="crop-advice-card card">
+                <div class="card-body">
+                  <h4><i class="fa fa-leaf"></i> Cotton</h4>
+                  <p>Favorable conditions for growth, maintain regular irrigation.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="weather-map">
+            <h3>Regional Weather Map</h3>
+            <div class="map-placeholder">
+              <img src="https://via.placeholder.com/800x400?text=Weather+Map" alt="Weather Map">
+            </div>
+            
+            <div class="mt-4 text-center">
+              <p class="text-sm text-muted-foreground">Weather data provided by Kisan Weather Service</p>
+              <button class="btn-farm mt-2">
+                <i class="fa fa-bell"></i> Set Weather Alerts
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+  
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+  <script>
+    // Set current date
+    document.addEventListener('DOMContentLoaded', function() {
+      const today = new Date();
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      document.getElementById('current-date').textContent = today.toLocaleDateString('en-US', options);
+      
+      // Sidebar toggle for mobile
+      const sidebarToggle = document.getElementById('sidebar-toggle');
+      if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', function() {
+          const sidebar = document.getElementById('sidebar');
+          sidebar.classList.toggle('active');
+        });
+      }
+      
+      // Logout button handler
+      const logoutBtn = document.getElementById('logout-btn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', function() {
+          window.location.href = "index.html";
+        });
+      }
+    });
+  </script>
+  <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+</body>
+</html>
