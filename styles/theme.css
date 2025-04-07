@@ -231,3 +231,29 @@
   right: -10px;
   opacity: 0.5;
 }
+
+/* Weather specific theme components */
+.weather-bg-sunny {
+  background: linear-gradient(120deg, var(--color-wheat) 0%, var(--color-sky) 100%);
+}
+
+.weather-bg-cloudy {
+  background: linear-gradient(120deg, #E5E7EB 0%, var(--color-sky) 100%);
+}
+
+.weather-bg-rainy {
+  background: linear-gradient(120deg, #D1D5DB 0%, #93C5FD 100%);
+}
+
+/* Additional utility classes for the weather page */
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}

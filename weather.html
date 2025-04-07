@@ -138,6 +138,75 @@
     .weather-stat-item i {
       color: var(--color-sky);
     }
+    
+    .crop-advice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .map-placeholder {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+    
+    .map-placeholder img {
+      width: 100%;
+      height: auto;
+      max-height: 400px;
+      object-fit: cover;
+    }
+    
+    .weather-summary {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 0;
+    }
+    
+    .weather-icon {
+      font-size: 60px;
+      color: #F9C74F;
+    }
+    
+    .temperature {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    
+    .section-title {
+      font-size: 20px;
+      color: var(--color-soil);
+      margin-top: 30px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .section-title i {
+      color: var(--color-leaf);
+    }
+    
+    .mt-4 {
+      margin-top: 20px;
+    }
+    
+    .text-center {
+      text-align: center;
+    }
+    
+    .text-sm {
+      font-size: 14px;
+    }
+    
+    .text-muted-foreground {
+      color: #666;
+    }
   </style>
 </head>
 
@@ -275,7 +344,7 @@
           </div>
           
           <!-- 5-Day Forecast -->
-          <h3 class="section-title mt-4">5-Day Forecast</h3>
+          <h3 class="section-title mt-4"><i class="fa fa-calendar-week"></i> 5-Day Forecast</h3>
           <div class="forecast-cards">
             <div class="forecast-card">
               <div class="forecast-day">Today</div>
@@ -339,7 +408,7 @@
           </div>
           
           <!-- Crop-specific Weather Advice -->
-          <h3 class="section-title mt-4">Crop Weather Advisory</h3>
+          <h3 class="section-title mt-4"><i class="fa fa-leaf"></i> Crop Weather Advisory</h3>
           <div class="crop-advice-container">
             <div class="crop-advice-grid">
               <div class="crop-advice-card card">
@@ -373,14 +442,14 @@
           </div>
           
           <div class="weather-map">
-            <h3>Regional Weather Map</h3>
+            <h3 class="section-title"><i class="fa fa-map"></i> Regional Weather Map</h3>
             <div class="map-placeholder">
               <img src="https://via.placeholder.com/800x400?text=Weather+Map" alt="Weather Map">
             </div>
             
             <div class="mt-4 text-center">
               <p class="text-sm text-muted-foreground">Weather data provided by Kisan Weather Service</p>
-              <button class="btn-farm mt-2">
+              <button class="btn-farm mt-4">
                 <i class="fa fa-bell"></i> Set Weather Alerts
               </button>
             </div>
@@ -417,6 +486,5 @@
       }
     });
   </script>
-  <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
 </body>
 </html>
