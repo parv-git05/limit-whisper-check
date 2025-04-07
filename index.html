@@ -1,26 +1,835 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>limit-whisper-check</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
-
-    <meta property="og:title" content="limit-whisper-check" />
-    <meta property="og:description" content="Lovable Generated Project" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <title>Kisan Direct Market</title>
+    <meta name="description" content="Empowering Farmers with Direct Market Access" />
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/theme.css">
+    <link rel="stylesheet" href="styles/authBackground.css">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   </head>
 
   <body>
-    <div id="root"></div>
-    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+    <div id="app">
+      <!-- Login Page Section (visible by default) -->
+      <section id="login-page" class="auth-page">
+        <div class="auth-background">
+          <div class="farm-background"></div>
+          <div class="leaf-1"></div>
+          <div class="leaf-2"></div>
+          <div class="seed-1"></div>
+          <div class="seed-2"></div>
+          <div class="light-rays"></div>
+        </div>
+        
+        <div class="auth-container">
+          <div class="auth-card">
+            <div class="auth-header">
+              <h1>KISAN DIRECT MARKET</h1>
+              <p>Empowering Farmers with Direct Market Access</p>
+            </div>
+            
+            <form id="login-form" class="auth-form">
+              <div class="form-group">
+                <label for="login-email"><i class="fa fa-envelope"></i> Email</label>
+                <input type="email" id="login-email" class="farm-input" placeholder="Enter your email" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="login-password"><i class="fa fa-lock"></i> Password</label>
+                <input type="password" id="login-password" class="farm-input" placeholder="Enter your password" required>
+              </div>
+              
+              <button type="submit" class="btn-farm">
+                <i class="fa fa-sign-in-alt"></i> Login
+              </button>
+              
+              <p class="auth-switch">
+                Don't have an account? <a href="#" onclick="switchToRegister()">Register</a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Register Page Section (hidden by default) -->
+      <section id="register-page" class="auth-page" style="display: none;">
+        <div class="auth-background">
+          <div class="farm-background"></div>
+          <div class="leaf-1"></div>
+          <div class="leaf-2"></div>
+          <div class="seed-1"></div>
+          <div class="seed-2"></div>
+          <div class="light-rays"></div>
+        </div>
+        
+        <div class="auth-container">
+          <div class="auth-card">
+            <div class="auth-header">
+              <h1>KISAN DIRECT MARKET</h1>
+              <p>Join our community of farmers & dealers</p>
+            </div>
+            
+            <form id="register-form" class="auth-form">
+              <div class="form-group">
+                <label for="register-name"><i class="fa fa-user"></i> Full Name</label>
+                <input type="text" id="register-name" class="farm-input" placeholder="Enter your name" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="register-email"><i class="fa fa-envelope"></i> Email</label>
+                <input type="email" id="register-email" class="farm-input" placeholder="Enter your email" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="register-password"><i class="fa fa-lock"></i> Password</label>
+                <input type="password" id="register-password" class="farm-input" placeholder="Create a password" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="user-type"><i class="fa fa-users"></i> I am a:</label>
+                <select id="user-type" class="farm-input">
+                  <option value="farmer">Farmer</option>
+                  <option value="dealer">Dealer</option>
+                </select>
+              </div>
+              
+              <button type="submit" class="btn-farm">
+                <i class="fa fa-user-plus"></i> Register
+              </button>
+              
+              <p class="auth-switch">
+                Already have an account? <a href="#" onclick="switchToLogin()">Login</a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Dashboard (Hidden by default) -->
+      <section id="dashboard" style="display: none;">
+        <header class="dashboard-header">
+          <div class="container">
+            <div class="header-content">
+              <div class="left-section">
+                <button id="sidebar-toggle" class="menu-toggle">
+                  <i class="fa fa-bars"></i>
+                </button>
+                <div class="logo-text">
+                  <h1>KISAN DIRECT MARKET</h1>
+                  <p>Empowering Farmers with Direct Market Access</p>
+                </div>
+              </div>
+              <div class="right-section">
+                <div class="user-info">
+                  <i class="fa fa-user-circle"></i>
+                  <span>Welcome, <span id="username-display">User</span>!</span>
+                </div>
+                <button id="logout-btn" class="btn-logout">
+                  <i class="fa fa-sign-out-alt"></i>
+                  <span>Logout</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+        
+        <div class="dashboard-container">
+          <!-- Sidebar -->
+          <aside id="sidebar" class="sidebar">
+            <nav class="sidebar-nav">
+              <ul>
+                <li class="active">
+                  <a href="#" data-section="home-section">
+                    <i class="fa fa-home"></i>
+                    <span>Dashboard</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" data-section="markets-section">
+                    <i class="fa fa-store"></i>
+                    <span>Markets</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" data-section="dealers-section">
+                    <i class="fa fa-handshake"></i>
+                    <span>Dealers</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" data-section="crops-section">
+                    <i class="fa fa-seedling"></i>
+                    <span>Crops</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" data-section="weather-section">
+                    <i class="fa fa-cloud-sun"></i>
+                    <span>Weather</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" data-section="policies-section">
+                    <i class="fa fa-file-alt"></i>
+                    <span>Policies</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" data-section="suggestions-section">
+                    <i class="fa fa-lightbulb"></i>
+                    <span>Suggestions</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </aside>
+          
+          <!-- Main Content -->
+          <main class="main-content">
+            <!-- Home Section -->
+            <section id="home-section" class="dashboard-section">
+              <h2><i class="fa fa-home"></i> Dashboard Overview</h2>
+              
+              <div class="dashboard-cards">
+                <div class="card weather-card">
+                  <div class="card-header">
+                    <h3><i class="fa fa-cloud-sun"></i> Weather Forecast</h3>
+                  </div>
+                  <div class="card-body">
+                    <div class="weather-summary">
+                      <div class="weather-icon">
+                        <i class="fa fa-sun"></i>
+                      </div>
+                      <div class="weather-info">
+                        <h4>Sunny</h4>
+                        <p class="temperature">32°C</p>
+                        <p>Perfect day for harvesting!</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card market-card">
+                  <div class="card-header">
+                    <h3><i class="fa fa-store"></i> Nearby Markets</h3>
+                  </div>
+                  <div class="card-body">
+                    <ul class="list-items">
+                      <li><i class="fa fa-map-marker-alt"></i> Azadpur Mandi (5km)</li>
+                      <li><i class="fa fa-map-marker-alt"></i> Ghazipur Mandi (12km)</li>
+                      <li><i class="fa fa-map-marker-alt"></i> Okhla Mandi (15km)</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div class="card dealer-card">
+                  <div class="card-header">
+                    <h3><i class="fa fa-handshake"></i> Active Dealers</h3>
+                  </div>
+                  <div class="card-body">
+                    <ul class="list-items">
+                      <li><i class="fa fa-user"></i> Raj Trading Co. (Wheat, Rice)</li>
+                      <li><i class="fa fa-user"></i> Sharma Exports (Vegetables)</li>
+                      <li><i class="fa fa-user"></i> Green Harvest Ltd. (Fruits)</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="crop-pricing">
+                <h3><i class="fa fa-chart-line"></i> Current Crop Prices</h3>
+                <div class="price-table-container">
+                  <table class="price-table">
+                    <thead>
+                      <tr>
+                        <th>Crop</th>
+                        <th>Min Price</th>
+                        <th>Max Price</th>
+                        <th>Trend</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Wheat</td>
+                        <td>₹2,100/q</td>
+                        <td>₹2,300/q</td>
+                        <td class="trend-up"><i class="fa fa-arrow-up"></i> 3%</td>
+                      </tr>
+                      <tr>
+                        <td>Rice</td>
+                        <td>₹1,800/q</td>
+                        <td>₹2,000/q</td>
+                        <td class="trend-down"><i class="fa fa-arrow-down"></i> 2%</td>
+                      </tr>
+                      <tr>
+                        <td>Tomatoes</td>
+                        <td>₹1,200/q</td>
+                        <td>₹1,500/q</td>
+                        <td class="trend-up"><i class="fa fa-arrow-up"></i> 15%</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+            
+            <!-- Markets Section -->
+            <section id="markets-section" class="dashboard-section" style="display: none;">
+              <h2><i class="fa fa-store"></i> Markets</h2>
+              
+              <div class="markets-container">
+                <div class="market-search">
+                  <input type="text" placeholder="Search markets..." class="farm-input">
+                  <button class="btn-farm"><i class="fa fa-search"></i> Search</button>
+                </div>
+                
+                <div class="market-grid">
+                  <div class="market-item">
+                    <div class="market-image">
+                      <img src="https://via.placeholder.com/150" alt="Azadpur Market">
+                    </div>
+                    <div class="market-details">
+                      <h3>Azadpur Mandi</h3>
+                      <p><i class="fa fa-map-marker-alt"></i> North Delhi, 5km</p>
+                      <p><i class="fa fa-info-circle"></i> Largest fruit & vegetable market</p>
+                      <p><i class="fa fa-clock"></i> 6:00 AM - 8:00 PM</p>
+                      <a href="#" class="btn-farm btn-sm">View Details</a>
+                    </div>
+                  </div>
+                  
+                  <div class="market-item">
+                    <div class="market-image">
+                      <img src="https://via.placeholder.com/150" alt="Ghazipur Market">
+                    </div>
+                    <div class="market-details">
+                      <h3>Ghazipur Mandi</h3>
+                      <p><i class="fa fa-map-marker-alt"></i> East Delhi, 12km</p>
+                      <p><i class="fa fa-info-circle"></i> Specializes in vegetables</p>
+                      <p><i class="fa fa-clock"></i> 5:00 AM - 7:00 PM</p>
+                      <a href="#" class="btn-farm btn-sm">View Details</a>
+                    </div>
+                  </div>
+                  
+                  <div class="market-item">
+                    <div class="market-image">
+                      <img src="https://via.placeholder.com/150" alt="Okhla Market">
+                    </div>
+                    <div class="market-details">
+                      <h3>Okhla Mandi</h3>
+                      <p><i class="fa fa-map-marker-alt"></i> South Delhi, 15km</p>
+                      <p><i class="fa fa-info-circle"></i> Mixed crops market</p>
+                      <p><i class="fa fa-clock"></i> 6:00 AM - 6:00 PM</p>
+                      <a href="#" class="btn-farm btn-sm">View Details</a>
+                    </div>
+                  </div>
+                  
+                  <div class="market-item">
+                    <div class="market-image">
+                      <img src="https://via.placeholder.com/150" alt="Narela Market">
+                    </div>
+                    <div class="market-details">
+                      <h3>Narela Market</h3>
+                      <p><i class="fa fa-map-marker-alt"></i> North West Delhi, 18km</p>
+                      <p><i class="fa fa-info-circle"></i> Grain specialization</p>
+                      <p><i class="fa fa-clock"></i> 7:00 AM - 5:00 PM</p>
+                      <a href="#" class="btn-farm btn-sm">View Details</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            
+            <!-- Dealers Section -->
+            <section id="dealers-section" class="dashboard-section" style="display: none;">
+              <h2><i class="fa fa-handshake"></i> Dealers</h2>
+              
+              <div class="dealers-container">
+                <div class="dealer-search">
+                  <input type="text" placeholder="Search dealers..." class="farm-input">
+                  <select class="farm-input">
+                    <option value="">All Crop Types</option>
+                    <option value="grains">Grains</option>
+                    <option value="vegetables">Vegetables</option>
+                    <option value="fruits">Fruits</option>
+                  </select>
+                  <button class="btn-farm"><i class="fa fa-search"></i> Search</button>
+                </div>
+                
+                <div class="dealer-grid">
+                  <div class="dealer-item">
+                    <div class="dealer-avatar">
+                      <i class="fa fa-user-circle"></i>
+                    </div>
+                    <div class="dealer-details">
+                      <h3>Raj Trading Co.</h3>
+                      <p><i class="fa fa-seedling"></i> Wheat, Rice, Maize</p>
+                      <p><i class="fa fa-star"></i> 4.8/5 (120 reviews)</p>
+                      <p><i class="fa fa-phone"></i> +91 98765-43210</p>
+                      <div class="dealer-actions">
+                        <button class="btn-farm btn-sm">Contact</button>
+                        <button class="btn-farm btn-sm btn-outline">View Profile</button>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="dealer-item">
+                    <div class="dealer-avatar">
+                      <i class="fa fa-user-circle"></i>
+                    </div>
+                    <div class="dealer-details">
+                      <h3>Sharma Exports</h3>
+                      <p><i class="fa fa-seedling"></i> Vegetables, Potatoes, Onions</p>
+                      <p><i class="fa fa-star"></i> 4.5/5 (98 reviews)</p>
+                      <p><i class="fa fa-phone"></i> +91 98765-43211</p>
+                      <div class="dealer-actions">
+                        <button class="btn-farm btn-sm">Contact</button>
+                        <button class="btn-farm btn-sm btn-outline">View Profile</button>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="dealer-item">
+                    <div class="dealer-avatar">
+                      <i class="fa fa-user-circle"></i>
+                    </div>
+                    <div class="dealer-details">
+                      <h3>Green Harvest Ltd.</h3>
+                      <p><i class="fa fa-seedling"></i> Fruits, Mangoes, Apples</p>
+                      <p><i class="fa fa-star"></i> 4.7/5 (145 reviews)</p>
+                      <p><i class="fa fa-phone"></i> +91 98765-43212</p>
+                      <div class="dealer-actions">
+                        <button class="btn-farm btn-sm">Contact</button>
+                        <button class="btn-farm btn-sm btn-outline">View Profile</button>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="dealer-item">
+                    <div class="dealer-avatar">
+                      <i class="fa fa-user-circle"></i>
+                    </div>
+                    <div class="dealer-details">
+                      <h3>Singh Agro Industries</h3>
+                      <p><i class="fa fa-seedling"></i> Grains, Pulses, Spices</p>
+                      <p><i class="fa fa-star"></i> 4.6/5 (112 reviews)</p>
+                      <p><i class="fa fa-phone"></i> +91 98765-43213</p>
+                      <div class="dealer-actions">
+                        <button class="btn-farm btn-sm">Contact</button>
+                        <button class="btn-farm btn-sm btn-outline">View Profile</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            
+            <!-- Weather Section -->
+            <section id="weather-section" class="dashboard-section" style="display: none;">
+              <h2><i class="fa fa-cloud-sun"></i> Weather Forecast</h2>
+              
+              <div class="weather-container">
+                <div class="weather-search">
+                  <input type="text" value="New Delhi, India" class="farm-input">
+                  <button class="btn-farm"><i class="fa fa-search"></i></button>
+                </div>
+                
+                <div class="current-weather">
+                  <div class="weather-card-large">
+                    <div class="weather-header">
+                      <h3>Current Weather</h3>
+                      <p>Sunday, October 1, 2023</p>
+                    </div>
+                    
+                    <div class="weather-body">
+                      <div class="weather-icon-large">
+                        <i class="fa fa-sun"></i>
+                      </div>
+                      <div class="weather-info-large">
+                        <div class="temperature-large">32°C</div>
+                        <div class="weather-description">Sunny</div>
+                        <div class="weather-details">
+                          <div class="weather-detail-item">
+                            <i class="fa fa-wind"></i>
+                            <span>8 km/h</span>
+                          </div>
+                          <div class="weather-detail-item">
+                            <i class="fa fa-tint"></i>
+                            <span>40%</span>
+                          </div>
+                          <div class="weather-detail-item">
+                            <i class="fa fa-cloud"></i>
+                            <span>10%</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="weather-farming-advice">
+                      <h4><i class="fa fa-lightbulb"></i> Farming Advice</h4>
+                      <p>Perfect conditions for harvesting wheat and planting seasonal vegetables. Consider irrigation for afternoon heat.</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="forecast-weather">
+                  <h3>5-Day Forecast</h3>
+                  
+                  <div class="forecast-cards">
+                    <div class="forecast-card">
+                      <div class="forecast-day">Mon</div>
+                      <div class="forecast-icon"><i class="fa fa-sun"></i></div>
+                      <div class="forecast-temp">33°C</div>
+                    </div>
+                    
+                    <div class="forecast-card">
+                      <div class="forecast-day">Tue</div>
+                      <div class="forecast-icon"><i class="fa fa-cloud-sun"></i></div>
+                      <div class="forecast-temp">30°C</div>
+                    </div>
+                    
+                    <div class="forecast-card">
+                      <div class="forecast-day">Wed</div>
+                      <div class="forecast-icon"><i class="fa fa-cloud"></i></div>
+                      <div class="forecast-temp">29°C</div>
+                    </div>
+                    
+                    <div class="forecast-card">
+                      <div class="forecast-day">Thu</div>
+                      <div class="forecast-icon"><i class="fa fa-cloud-rain"></i></div>
+                      <div class="forecast-temp">28°C</div>
+                    </div>
+                    
+                    <div class="forecast-card">
+                      <div class="forecast-day">Fri</div>
+                      <div class="forecast-icon"><i class="fa fa-cloud-sun"></i></div>
+                      <div class="forecast-temp">31°C</div>
+                    </div>
+                  </div>
+                  
+                  <div class="weather-map">
+                    <h3>Weather Map</h3>
+                    <div class="map-placeholder">
+                      <img src="https://via.placeholder.com/800x400" alt="Weather Map">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            
+            <!-- Crops Section -->
+            <section id="crops-section" class="dashboard-section" style="display: none;">
+              <h2><i class="fa fa-seedling"></i> Crops</h2>
+              
+              <div class="crops-container">
+                <div class="crops-filter">
+                  <button class="btn-farm active">All Crops</button>
+                  <button class="btn-farm">Grains</button>
+                  <button class="btn-farm">Vegetables</button>
+                  <button class="btn-farm">Fruits</button>
+                  <button class="btn-farm">Cash Crops</button>
+                </div>
+                
+                <div class="crop-grid">
+                  <div class="crop-card">
+                    <div class="crop-image">
+                      <img src="https://via.placeholder.com/150" alt="Wheat">
+                    </div>
+                    <div class="crop-details">
+                      <h3>Wheat</h3>
+                      <p class="crop-season"><i class="fa fa-calendar"></i> Oct - Mar</p>
+                      <p class="crop-price"><i class="fa fa-tag"></i> ₹2,100 - ₹2,300/q</p>
+                      <div class="crop-actions">
+                        <button class="btn-farm btn-sm">View Markets</button>
+                        <button class="btn-farm btn-sm btn-outline">Growing Tips</button>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="crop-card">
+                    <div class="crop-image">
+                      <img src="https://via.placeholder.com/150" alt="Rice">
+                    </div>
+                    <div class="crop-details">
+                      <h3>Rice</h3>
+                      <p class="crop-season"><i class="fa fa-calendar"></i> Jun - Nov</p>
+                      <p class="crop-price"><i class="fa fa-tag"></i> ₹1,800 - ₹2,000/q</p>
+                      <div class="crop-actions">
+                        <button class="btn-farm btn-sm">View Markets</button>
+                        <button class="btn-farm btn-sm btn-outline">Growing Tips</button>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="crop-card">
+                    <div class="crop-image">
+                      <img src="https://via.placeholder.com/150" alt="Tomatoes">
+                    </div>
+                    <div class="crop-details">
+                      <h3>Tomatoes</h3>
+                      <p class="crop-season"><i class="fa fa-calendar"></i> Year-round</p>
+                      <p class="crop-price"><i class="fa fa-tag"></i> ₹1,200 - ₹1,500/q</p>
+                      <div class="crop-actions">
+                        <button class="btn-farm btn-sm">View Markets</button>
+                        <button class="btn-farm btn-sm btn-outline">Growing Tips</button>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="crop-card">
+                    <div class="crop-image">
+                      <img src="https://via.placeholder.com/150" alt="Potatoes">
+                    </div>
+                    <div class="crop-details">
+                      <h3>Potatoes</h3>
+                      <p class="crop-season"><i class="fa fa-calendar"></i> Oct - Feb</p>
+                      <p class="crop-price"><i class="fa fa-tag"></i> ₹900 - ₹1,200/q</p>
+                      <div class="crop-actions">
+                        <button class="btn-farm btn-sm">View Markets</button>
+                        <button class="btn-farm btn-sm btn-outline">Growing Tips</button>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="crop-card">
+                    <div class="crop-image">
+                      <img src="https://via.placeholder.com/150" alt="Mangoes">
+                    </div>
+                    <div class="crop-details">
+                      <h3>Mangoes</h3>
+                      <p class="crop-season"><i class="fa fa-calendar"></i> Mar - Jul</p>
+                      <p class="crop-price"><i class="fa fa-tag"></i> ₹4,000 - ₹6,000/q</p>
+                      <div class="crop-actions">
+                        <button class="btn-farm btn-sm">View Markets</button>
+                        <button class="btn-farm btn-sm btn-outline">Growing Tips</button>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="crop-card">
+                    <div class="crop-image">
+                      <img src="https://via.placeholder.com/150" alt="Cotton">
+                    </div>
+                    <div class="crop-details">
+                      <h3>Cotton</h3>
+                      <p class="crop-season"><i class="fa fa-calendar"></i> Apr - Oct</p>
+                      <p class="crop-price"><i class="fa fa-tag"></i> ₹5,500 - ₹6,200/q</p>
+                      <div class="crop-actions">
+                        <button class="btn-farm btn-sm">View Markets</button>
+                        <button class="btn-farm btn-sm btn-outline">Growing Tips</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            
+            <!-- Policies Section -->
+            <section id="policies-section" class="dashboard-section" style="display: none;">
+              <h2><i class="fa fa-file-alt"></i> Agricultural Policies</h2>
+              
+              <div class="policies-container">
+                <div class="policies-search">
+                  <input type="text" placeholder="Search policies..." class="farm-input">
+                  <button class="btn-farm"><i class="fa fa-search"></i> Search</button>
+                </div>
+                
+                <div class="policy-cards">
+                  <div class="policy-card">
+                    <div class="policy-icon">
+                      <i class="fa fa-hand-holding-usd"></i>
+                    </div>
+                    <div class="policy-content">
+                      <h3>PM-KISAN Scheme</h3>
+                      <p>Income support of ₹6,000 per year to farmer families</p>
+                      <div class="policy-meta">
+                        <span><i class="fa fa-calendar-alt"></i> Updated: Aug 2023</span>
+                        <a href="#" class="policy-link">View Details</a>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="policy-card">
+                    <div class="policy-icon">
+                      <i class="fa fa-tractor"></i>
+                    </div>
+                    <div class="policy-content">
+                      <h3>Farm Mechanization Programme</h3>
+                      <p>50% subsidy on purchase of new farming equipment</p>
+                      <div class="policy-meta">
+                        <span><i class="fa fa-calendar-alt"></i> Updated: Jun 2023</span>
+                        <a href="#" class="policy-link">View Details</a>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="policy-card">
+                    <div class="policy-icon">
+                      <i class="fa fa-shield-alt"></i>
+                    </div>
+                    <div class="policy-content">
+                      <h3>Crop Insurance Scheme</h3>
+                      <p>Protection against crop failure due to natural calamities</p>
+                      <div class="policy-meta">
+                        <span><i class="fa fa-calendar-alt"></i> Updated: Sep 2023</span>
+                        <a href="#" class="policy-link">View Details</a>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="policy-card">
+                    <div class="policy-icon">
+                      <i class="fa fa-warehouse"></i>
+                    </div>
+                    <div class="policy-content">
+                      <h3>Warehouse Development Scheme</h3>
+                      <p>Financial assistance for construction of rural godowns</p>
+                      <div class="policy-meta">
+                        <span><i class="fa fa-calendar-alt"></i> Updated: Jul 2023</span>
+                        <a href="#" class="policy-link">View Details</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="policy-documents">
+                  <h3>Recent Policy Documents</h3>
+                  <ul class="document-list">
+                    <li>
+                      <i class="fa fa-file-pdf"></i>
+                      <span>National Agricultural Policy 2023</span>
+                      <a href="#" class="btn-farm btn-sm"><i class="fa fa-download"></i> Download</a>
+                    </li>
+                    <li>
+                      <i class="fa fa-file-pdf"></i>
+                      <span>Organic Farming Guidelines</span>
+                      <a href="#" class="btn-farm btn-sm"><i class="fa fa-download"></i> Download</a>
+                    </li>
+                    <li>
+                      <i class="fa fa-file-pdf"></i>
+                      <span>MSP Calculation Methodology</span>
+                      <a href="#" class="btn-farm btn-sm"><i class="fa fa-download"></i> Download</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            
+            <!-- Suggestions Section -->
+            <section id="suggestions-section" class="dashboard-section" style="display: none;">
+              <h2><i class="fa fa-lightbulb"></i> Crop Suggestions</h2>
+              
+              <div class="suggestions-container">
+                <div class="suggestion-form">
+                  <h3>Get Personalized Crop Suggestions</h3>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="soil-type"><i class="fa fa-mountain"></i> Soil Type</label>
+                      <select id="soil-type" class="farm-input">
+                        <option value="">Select soil type</option>
+                        <option value="loamy">Loamy</option>
+                        <option value="clay">Clay</option>
+                        <option value="sandy">Sandy</option>
+                        <option value="silty">Silty</option>
+                      </select>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="water-availability"><i class="fa fa-tint"></i> Water Availability</label>
+                      <select id="water-availability" class="farm-input">
+                        <option value="">Select water availability</option>
+                        <option value="high">High (Irrigated)</option>
+                        <option value="medium">Medium (Seasonal)</option>
+                        <option value="low">Low (Rainfed)</option>
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="season"><i class="fa fa-sun"></i> Season</label>
+                      <select id="season" class="farm-input">
+                        <option value="">Select growing season</option>
+                        <option value="kharif">Kharif (Monsoon)</option>
+                        <option value="rabi">Rabi (Winter)</option>
+                        <option value="zaid">Zaid (Summer)</option>
+                      </select>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="land-size"><i class="fa fa-ruler-combined"></i> Land Size (acres)</label>
+                      <input type="number" id="land-size" class="farm-input" placeholder="Enter land size">
+                    </div>
+                  </div>
+                  
+                  <button class="btn-farm"><i class="fa fa-search"></i> Get Suggestions</button>
+                </div>
+                
+                <div class="suggestion-results">
+                  <h3>Recommended Crops</h3>
+                  
+                  <div class="suggestion-cards">
+                    <div class="suggestion-card">
+                      <div class="suggestion-image">
+                        <img src="https://via.placeholder.com/100" alt="Wheat">
+                      </div>
+                      <div class="suggestion-info">
+                        <h4>Wheat</h4>
+                        <p><i class="fa fa-check-circle"></i> 95% match for your land</p>
+                        <p><i class="fa fa-rupee-sign"></i> Expected yield: 40-45 q/acre</p>
+                        <p><i class="fa fa-water"></i> Water requirement: Medium</p>
+                        <button class="btn-farm btn-sm">View Details</button>
+                      </div>
+                    </div>
+                    
+                    <div class="suggestion-card">
+                      <div class="suggestion-image">
+                        <img src="https://via.placeholder.com/100" alt="Mustard">
+                      </div>
+                      <div class="suggestion-info">
+                        <h4>Mustard</h4>
+                        <p><i class="fa fa-check-circle"></i> 87% match for your land</p>
+                        <p><i class="fa fa-rupee-sign"></i> Expected yield: 8-10 q/acre</p>
+                        <p><i class="fa fa-water"></i> Water requirement: Low</p>
+                        <button class="btn-farm btn-sm">View Details</button>
+                      </div>
+                    </div>
+                    
+                    <div class="suggestion-card">
+                      <div class="suggestion-image">
+                        <img src="https://via.placeholder.com/100" alt="Gram">
+                      </div>
+                      <div class="suggestion-info">
+                        <h4>Gram</h4>
+                        <p><i class="fa fa-check-circle"></i> 82% match for your land</p>
+                        <p><i class="fa fa-rupee-sign"></i> Expected yield: 10-12 q/acre</p>
+                        <p><i class="fa fa-water"></i> Water requirement: Low</p>
+                        <button class="btn-farm btn-sm">View Details</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
+        </div>
+      </section>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
