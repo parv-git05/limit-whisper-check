@@ -3,6 +3,7 @@ import React from "react";
 import { User, LogOut, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { themeColors } from "@/lib/theme";
+import "../styles/theme.css";
 
 interface DashboardHeaderProps {
   username: string;
@@ -16,7 +17,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   onMenuToggle
 }) => {
   return (
-    <header className="bg-gradient-to-r from-soil to-leaf/90 text-white shadow-md">
+    <header className="header-gradient-soil shadow-md">
       <div className="container mx-auto px-4 py-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center gap-4 w-full md:w-auto">

@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { Search, MapPin, Calendar, Cloud, Droplets, Wind } from "lucide-react";
+import { Search, MapPin, Calendar, Cloud, Droplets, Wind, Leaf } from "lucide-react";
 import DashboardHeader from "@/components/DashboardHeader";
 import Sidebar from "@/components/Sidebar";
 import { Input } from "@/components/ui/input";
@@ -138,7 +138,7 @@ const Weather = () => {
                 <Card key={index} className="border-leaf/10 hover:border-leaf transition-colors">
                   <CardContent className="p-4">
                     <h4 className="font-medium text-lg mb-2 flex items-center">
-                      <Wheat className="h-5 w-5 mr-2 text-leaf" />
+                      <Leaf className="h-5 w-5 mr-2 text-leaf" />
                       {item.crop}
                     </h4>
                     <p className="text-muted-foreground">{item.advice}</p>
