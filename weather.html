@@ -207,6 +207,27 @@
     .text-muted-foreground {
       color: #666;
     }
+
+    /* CSS for sidebar toggle functionality without JavaScript */
+    .sidebar-toggle-input {
+      display: none;
+    }
+
+    .sidebar-toggle-input:checked ~ .dashboard-container .sidebar {
+      transform: translateX(0);
+    }
+
+    @media (max-width: 992px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* Navigation links styling */
+    .sidebar-nav a.active {
+      background-color: rgba(76, 175, 80, 0.1);
+      border-left-color: var(--color-leaf);
+    }
   </style>
 </head>
 
@@ -216,9 +237,10 @@
       <div class="container">
         <div class="header-content">
           <div class="left-section">
-            <button id="sidebar-toggle" class="menu-toggle">
+            <label for="sidebar-toggle-checkbox" class="menu-toggle">
               <i class="fa fa-bars"></i>
-            </button>
+            </label>
+            <input type="checkbox" id="sidebar-toggle-checkbox" class="sidebar-toggle-input">
             <div class="logo-text">
               <h1>KISAN DIRECT MARKET</h1>
               <p>Empowering Farmers with Direct Market Access</p>
@@ -227,12 +249,12 @@
           <div class="right-section">
             <div class="user-info">
               <i class="fa fa-user-circle"></i>
-              <span>Welcome, <span id="username-display">Rajesh Kumar</span>!</span>
+              <span>Welcome, Rajesh Kumar!</span>
             </div>
-            <button id="logout-btn" class="btn-logout">
+            <a href="index.html" class="btn-logout">
               <i class="fa fa-sign-out-alt"></i>
               <span>Logout</span>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -240,47 +262,47 @@
     
     <div class="dashboard-container">
       <!-- Sidebar -->
-      <aside id="sidebar" class="sidebar">
+      <aside class="sidebar">
         <nav class="sidebar-nav">
           <ul>
             <li>
-              <a href="index.html#home-section" data-section="home-section">
+              <a href="index.html">
                 <i class="fa fa-home"></i>
                 <span>Dashboard</span>
               </a>
             </li>
             <li>
-              <a href="index.html#markets-section" data-section="markets-section">
+              <a href="markets.html">
                 <i class="fa fa-store"></i>
                 <span>Markets</span>
               </a>
             </li>
             <li>
-              <a href="index.html#dealers-section" data-section="dealers-section">
+              <a href="dealers.html">
                 <i class="fa fa-handshake"></i>
                 <span>Dealers</span>
               </a>
             </li>
             <li>
-              <a href="index.html#crops-section" data-section="crops-section">
+              <a href="crops.html">
                 <i class="fa fa-seedling"></i>
                 <span>Crops</span>
               </a>
             </li>
             <li class="active">
-              <a href="weather.html" data-section="weather-section">
+              <a href="weather.html" class="active">
                 <i class="fa fa-cloud-sun"></i>
                 <span>Weather</span>
               </a>
             </li>
             <li>
-              <a href="index.html#policies-section" data-section="policies-section">
+              <a href="policies.html">
                 <i class="fa fa-file-alt"></i>
                 <span>Policies</span>
               </a>
             </li>
             <li>
-              <a href="index.html#suggestions-section" data-section="suggestions-section">
+              <a href="suggestions.html">
                 <i class="fa fa-lightbulb"></i>
                 <span>Suggestions</span>
               </a>
@@ -298,9 +320,9 @@
           <div class="weather-search-container">
             <i class="fa fa-map-marker-alt"></i>
             <input type="text" placeholder="Search location..." value="Nashik, Maharashtra">
-            <button class="btn-farm">
+            <a href="#" class="btn-farm">
               <i class="fa fa-search"></i>
-            </button>
+            </a>
           </div>
           
           <!-- Current Weather -->
@@ -313,7 +335,7 @@
                 </div>
                 <div class="weather-date">
                   <i class="fa fa-calendar"></i>
-                  <span id="current-date">Monday, April 7, 2025</span>
+                  <span>Monday, April 7, 2025</span>
                 </div>
               </div>
               
@@ -449,42 +471,14 @@
             
             <div class="mt-4 text-center">
               <p class="text-sm text-muted-foreground">Weather data provided by Kisan Weather Service</p>
-              <button class="btn-farm mt-4">
+              <a href="#" class="btn-farm mt-4">
                 <i class="fa fa-bell"></i> Set Weather Alerts
-              </button>
+              </a>
             </div>
           </div>
         </section>
       </main>
     </div>
   </div>
-  
-  <!-- JavaScript -->
-  <script src="js/main.js"></script>
-  <script>
-    // Set current date
-    document.addEventListener('DOMContentLoaded', function() {
-      const today = new Date();
-      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      document.getElementById('current-date').textContent = today.toLocaleDateString('en-US', options);
-      
-      // Sidebar toggle for mobile
-      const sidebarToggle = document.getElementById('sidebar-toggle');
-      if (sidebarToggle) {
-        sidebarToggle.addEventListener('click', function() {
-          const sidebar = document.getElementById('sidebar');
-          sidebar.classList.toggle('active');
-        });
-      }
-      
-      // Logout button handler
-      const logoutBtn = document.getElementById('logout-btn');
-      if (logoutBtn) {
-        logoutBtn.addEventListener('click', function() {
-          window.location.href = "index.html";
-        });
-      }
-    });
-  </script>
 </body>
 </html>
